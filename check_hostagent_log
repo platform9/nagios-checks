@@ -1,0 +1,10 @@
+#!/bin/bash
+output=`tail -1 /var/log/pf9/hostagent.log | grep -i 'error\|failed'`
+
+if [ -z "$output" ]; then
+  echo "OK- No error or failure in hostagent.log"
+  exit 0
+else
+  echo "CRITICAL- $output"
+  exit 2
+fi
